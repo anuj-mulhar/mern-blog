@@ -24,15 +24,12 @@ export const signup = async (req, res, next) => {
     } catch (error) {
         next(error); 
     }
-
-
 };
 
 export const signin = async (req, res, next) => {
     const {email, password} = req.body;
     if  (!email || !password || email === '' || password ===''){
         next(errorHandler(400, 'All fields are required '));
-
     }
     try {
         const validUser = await User.findOne({ email });

@@ -22,7 +22,7 @@ export default function OAuth() {
                 body:JSON.stringify({
                     name: resultsFromGoogle.user.displayName,
                     email: resultsFromGoogle.user.email,
-                    googlePhotoUrl : resultsFromGoogle.user.photoUrl,
+                    googlePhotoUrl : resultsFromGoogle.user.photoURL,
                 }),
             })
 
