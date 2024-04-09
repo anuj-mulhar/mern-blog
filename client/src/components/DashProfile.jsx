@@ -72,6 +72,8 @@ export default function DashProfile() {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  console.log(formData);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(formData).length === 0){
@@ -85,7 +87,7 @@ export default function DashProfile() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body:  JSON.stringify(formData),
+        body: JSON.stringify(formData),
       });
       const data = await res.json();
       if(!res.ok){
