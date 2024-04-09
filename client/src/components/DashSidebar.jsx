@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {Sidebar} from 'flowbite-react';
 import {HiArrowSmRight, HiUser} from 'react-icons/hi';
-import {useDispatch} from 'react/redux';
+import {useDispatch} from  "react-redux";
 import { signoutSuccess } from '../redux/user/userSlice';
 
 
