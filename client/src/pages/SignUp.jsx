@@ -32,7 +32,7 @@ export default function SignUp() {
       }
       setLoading(false);
       if(res.ok){
-        navigate('/sign-in');
+        navigate('/signin');
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -93,7 +93,7 @@ export default function SignUp() {
             <span>
               Have an account?
             </span>
-            <Link to='/sign-in' className='text-blue-500'>Sign In</Link>
+            <Link to='/signin' className='text-blue-500'>Sign In</Link>
           </div>
           {
             errorMessage && (
