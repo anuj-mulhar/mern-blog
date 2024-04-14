@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Modal, Table } from "flowbite-react";
-import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { FaCheck , FaTimes } from 'react-icons/fa';
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
@@ -47,9 +47,8 @@ export default function DashUsers() {
       console.log(error.message);
     }
   };
-
- 
-
+  const handleDeleteUser = async () => {
+  };
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 ">
       {currentUser.isAdmin && users.length > 0 ? (
@@ -59,12 +58,13 @@ export default function DashUsers() {
               <Table.HeadCell>Date created</Table.HeadCell>
               <Table.HeadCell>User Image</Table.HeadCell>
               <Table.HeadCell>Username</Table.HeadCell>
+              <Table.HeadCell>Email</Table.HeadCell>
               <Table.HeadCell>Admin</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
 
             </Table.Head>
             {users.map((user) => (
-              <Table.Body className="divide-y">
+              <Table.Body className="divide-y" key={user._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 ">
                   <Table.Cell>
                     {new Date(user.createdAt).toLocaleDateString()}
@@ -74,15 +74,13 @@ export default function DashUsers() {
                       <img
                         src={user.profilePicture}
                         alt={user.username}
-                        className="w-20 h-10 object-cover bg-gray-500"
+                        className="w-10 h-10 object-cover bg-gray-500 rounded-full"
                       />
                    
                   </Table.Cell>
-                  <Table.Cell>
-                    {user.username}
-                  </Table.Cell>
+                  <Table.Cell>{user.username}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>{user.isAdmin}</Table.Cell>
+                  <Table.Cell>{user.isAdmin ? (<FaCheck className='text-green-500'/>) : (<FaTimes className='text-red-500' />)}</Table.Cell>
                   <Table.Cell>
                     <span
                       onClick={() => {
@@ -109,7 +107,7 @@ export default function DashUsers() {
           )}
         </>
       ) : (
-        <p> You don't have any posts yet.</p>
+        <p> You don't have any users yet.</p>
       )}
 
       <Modal
@@ -124,7 +122,7 @@ export default function DashUsers() {
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-400 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this post ?
+              Are you sure you want to delete this user ?
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeleteUser}>
